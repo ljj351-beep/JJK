@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roster & Wellbeing — HR Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span> Roster &amp; Wellbeing</div>
+  <button class="back-btn" id="backBtn">← Back to roster</button>
+</div>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page" id="homePage">
+  <div class="page-head">
+    <div class="eyebrow">Home · Team Roster</div>
+    <h1>Employees</h1>
+    <p>Every employee's leave entitlement and usage for 2026 at a glance. Select anyone to open their calendar and current wellbeing read.</p>
+  </div>
+  <div class="roster" id="rosterGrid"></div>
+</div>
+
+<!-- ============ EMPLOYEE PAGE ============ -->
+<div class="page hidden" id="employeePage">
+
+  <div class="emp-header-card">
+    <div class="avatar" id="empAvatar">—</div>
+    <div class="emp-header-info">
+      <h2 id="empName">—</h2>
+      <div class="sub">
+        <span id="empId">—</span>
+        <span id="empRole">—</span>
+        <span id="empSchedule">—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stress-strip" id="stressStrip" data-stress="low">
+    <div class="stress-left">
+      <div class="eyebrow">Current wellbeing signal</div>
+      <p class="stress-label" id="stressLabel">Low Stress</p>
+      <p class="stress-desc" id="stressDesc">—</p>
+      <p class="stress-note">Modelled from workload activity, plus annual &amp; medical leave taken, via the Foundry wellbeing agent.</p>
+    </div>
+    <div class="pulse-wrap"><svg id="pulseSvg" viewBox="0 0 380 60" preserveAspectRatio="none"></svg></div>
+  </div>
+
+  <div class="risk-card" id="riskCard" data-risk="low">
+    <div class="risk-card-head">
+      <div class="risk-left">
+        <div class="eyebrow">Burnout early-warning score</div>
+        <div class="risk-score-row">
+          <span class="risk-score-num" id="riskScoreVal">—</span>
+          <span class="risk-score-label" id="riskLabel">—</span>
+        </div>
+        <p class="risk-desc" id="riskDesc">—</p>
+      </div>
+    </div>
+    <div class="risk-factors" id="riskFactors"></div>
+    <p class="stress-note">Model combines after-hours activity, absenteeism trend and PTO utilization. Intended as a prompt for a supportive conversation, not a performance or disciplinary measure — see the disclosure note below.</p>
+  </div>
+
+  <div class="legend">
+    <div class="item"><span class="swatch" style="background:#E5EFEC; border:1px solid var(--brand)"></span> Scheduled work day</div>
+    <div class="item"><span class="swatch" style="background:var(--al)"></span> Annual leave</div>
+    <div class="item"><span class="swatch" style="background:var(--ml)"></span> Medical leave</div>
+    <div class="item"><span class="swatch" style="background:var(--surface-2)"></span> Weekend / off</div>
+    <div class="item"><span class="swatch" style="background:var(--surface-2); opacity:0.55; border:1px solid var(--brand)"></span> Upcoming (no workload data yet)</div>
+    <div class="item"><span class="swatch" style="background:var(--ot-flag); border-radius:50%; width:8px; height:8px;"></span> After-hours activity logged (time shown, click for detail)</div>
+    <div class="item"><span class="swatch" style="background:var(--wk-flag); border-radius:50%; width:8px; height:8px;"></span> Weekend login logged (time shown, click for detail)</div>
+    <div class="item">Time chip colour = that day's workload: <span class="swatch" style="background:var(--stress-low-bg); border:1px solid var(--stress-low)"></span> light <span class="swatch" style="background:var(--stress-med-bg); border:1px solid var(--stress-med)"></span> mediocre <span class="swatch" style="background:var(--stress-high-bg); border:1px solid var(--stress-high)"></span> heavy</div>
+  </div>
+
+  <div class="cal-shell">
+    <div class="cal-col" id="calendarCol"></div>
+    <div class="side-panel" id="sidePanel">
+      <div class="sp-empty" id="spEmpty"><span class="big">No day selected</span>Click any scheduled work day up to today to see that day's workload breakdown. Future work days have no data yet.</div>
+      <div id="spContent" class="hidden"></div>
+    </div>
+  </div>
+
+  <div class="data-note">
+    Prototype data notice — workload figures and the burnout risk score shown here are simulated for demo purposes. In production, this panel would be populated by the on-device activity tracker (Microsoft 365 apps, browser activity, screen &amp; input signal), leave records, and attendance data feeding the Foundry agent, under the organization's monitoring policy that employees have been notified of. The risk score is intended to prompt a private, supportive conversation between manager and employee — not to drive automated action, and it should not be used as an input to performance reviews or disciplinary decisions.
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
